@@ -15,7 +15,7 @@ namespace Persistencia
         {
             var builder = new DbContextOptionsBuilder<ContextoPrincipal>();
             builder.UseNpgsql(
-            @"Host=localhost;Database=LEC-Core-LocalDb;Username=postgres;Password=admin",
+            @"Host=localhost;Database=LEC-Core-LocalDb;Username=postgres;Password=zxcvbnm1A",
             optionsBuilder => optionsBuilder
             .MigrationsAssembly(typeof(ContextoPrincipal)
             .GetTypeInfo()

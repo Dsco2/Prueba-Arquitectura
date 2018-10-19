@@ -13,7 +13,7 @@ namespace Persistencia.Productos.Mapas
     {
         public void Configure(EntityTypeBuilder<Articulo> builder)
         {
-            builder.ToTable(null, "articulos");
+            builder.ToTable("Articulos", "prods");
             builder.HasKey(x => x.IdArticulo);
         }
     }
