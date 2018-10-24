@@ -1,18 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using IoC;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using Persistencia;
 
 namespace API
 {
@@ -23,17 +19,20 @@ namespace API
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+        public IConfiguration Configuration { get; }//perdon que fue lo ultimo se entrecorto un segundo
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
+            services.AddDbContext<ContextoPrincipal>(Options =>
+            Options.UseNpgsql(Configuration.GetConnectionString("Localdb")));//desde aqui fue que comenzó
+
             var containerBuilder = new ContainerBuilder();
             containerBuilder.RegisterModule<ModuloCore>();
             containerBuilder.Populate(services);
-            var container = containerBuilder.Build();
+            var container = containerBuilder.Build();//si, gracias
             return new AutofacServiceProvider(container);
         }
 

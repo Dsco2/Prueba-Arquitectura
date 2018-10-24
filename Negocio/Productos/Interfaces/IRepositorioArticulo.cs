@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Negocio.Productos.Interfaces
 {
-    public interface IServicioArticulo
+    public interface IRepositorioArticulo
     {
-        bool CrearArticulo(string nombreArticulo);
-
+        bool CrearArticulo(string nombre);
     }
 }

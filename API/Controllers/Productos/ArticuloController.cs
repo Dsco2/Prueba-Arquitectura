@@ -5,7 +5,7 @@ using Negocio.Productos.Interfaces;
 namespace API.Controllers.Productos
 {
     [Route ("api/Productos/[controller]")]
-    public class ArticuloController : Controller
+    public class ArticuloController : Controller //No, fue cuando quise agregar el paquete  de npgsql
     {
         private readonly IServicioArticulo _servicioArticulo;
 
