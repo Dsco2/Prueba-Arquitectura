@@ -14,6 +14,11 @@ namespace Negocio.Productos.Servicios
             _repositorioArticulo = respositoArticulo;
         }
 
+        public bool ActualizarPrecio(int id, decimal precio)
+        {
+            return _repositorioArticulo.ActualizarPrecio(id, precio);
+        }
+
         public bool CrearArticulo(string nombreArticulo)
         {
             return _repositorioArticulo.CrearArticulo(nombreArticulo);

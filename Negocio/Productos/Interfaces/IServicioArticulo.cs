@@ -12,5 +12,6 @@ namespace Negocio.Productos.Interfaces
         bool CrearArticulo(string nombreArticulo);
         List<Articulo> ObtenerArticulos();
         Articulo ObtenerArticuloPorId(int id);
+        bool ActualizarPrecio(int id, decimal precio);
     }
 }

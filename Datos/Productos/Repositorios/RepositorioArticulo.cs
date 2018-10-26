@@ -15,6 +15,24 @@ namespace Persistencia.Productos.Repositorios
             _contexto = contexto;
         }
 
+        public bool ActualizarPrecio(int id, decimal precio)
+        {
+            try
+            {
+                var articulo = _contexto.Articulos.FirstOrDefault(x => x.IdArticulo == id);
+                if (articulo == null) return false;
+                articulo.Precio = precio;
+                _contexto.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return false;
+            }
+            
+        }
+
         public bool CrearArticulo(string nombre)
         {
             try

@@ -36,6 +36,17 @@ namespace API.Controllers.Productos
             if (Articulos == null) return NoContent();
             return Ok(Articulos);
         }
+
+        [HttpPut("{id}")]
+        public IActionResult Put(int id,[FromBody]decimal precio)
+        {
+            if (precio == 0) return BadRequest();
+            var exitoso = _servicioArticulo.ActualizarPrecio(id, precio);
+            if (!exitoso) return NoContent();
+            return Ok();
+        }
+
+
     }
 }
 //Si
