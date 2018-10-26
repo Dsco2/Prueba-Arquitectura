@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Negocio.Productos.Entidades;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,5 +10,7 @@ namespace Negocio.Productos.Interfaces
     public interface IRepositorioArticulo
     {
         bool CrearArticulo(string nombre);
+        List<Articulo> ObtenerArticulos();
+        Articulo ObtenerArticulosPorId(int id);
     }
 }
