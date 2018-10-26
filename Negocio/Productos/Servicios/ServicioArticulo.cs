@@ -24,6 +24,11 @@ namespace Negocio.Productos.Servicios
             return _repositorioArticulo.CrearArticulo(nombreArticulo);
         }
 
+        public bool EliminarArticulo(int id)
+        {
+            return _repositorioArticulo.EliminarArticulo(id);
+        }
+
         public Articulo ObtenerArticuloPorId(int id)
         {
             return _repositorioArticulo.ObtenerArticulosPorId(id);

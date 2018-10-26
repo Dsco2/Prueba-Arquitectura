@@ -51,11 +51,30 @@ namespace Persistencia.Productos.Repositorios
             }
         }
 
+        public bool EliminarArticulo(int id)
+        {
+            try
+            {
+                var articulo = _contexto.Articulos.FirstOrDefault(x => x.IdArticulo == id);
+                if (articulo == null) return false;
+                articulo.FechaBorrado = DateTime.UtcNow;
+                _contexto.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+
         public List<Articulo> ObtenerArticulos()
         {
             try
             {
-                var query = _contexto.Articulos.ToList();
+                var query = _contexto.Articulos
+                .Where(x => !x.FechaBorrado.HasValue)
+                .ToList();
                 return query;
             }
             catch (Exception e)
@@ -69,10 +88,9 @@ namespace Persistencia.Productos.Repositorios
         {
             try
             {
-                var temp = _contexto;
-                var art = temp.Articulos;
-
-                var query = art.FirstOrDefault(x => x.IdArticulo == id);
+                var query = _contexto.Articulos
+                    .Where(x => !x.FechaBorrado.HasValue)
+                    .FirstOrDefault(x => x.IdArticulo == id);
                 
                 return query;
             }

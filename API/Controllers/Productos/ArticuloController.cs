@@ -46,6 +46,16 @@ namespace API.Controllers.Productos
             return Ok();
         }
 
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            if (id == 0) return BadRequest();
+            var exitoso = _servicioArticulo.EliminarArticulo(id);
+            if (!exitoso) return NoContent();
+            return Ok();
+        }
+
+
 
     }
 }

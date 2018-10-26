@@ -10,7 +10,7 @@ namespace Persistencia.Mercadeo.Repositorios
 
         public RepositorioLista(ContextoPrincipal contexto)
         {
-            _contexto = contexto;//si
+            _contexto = contexto;
         }
 
         public bool CrearArticuloPorLista(int idArticulo)
