@@ -1,4 +1,5 @@
 ﻿using API.ModelosVista.Productos;
+using Mapster;
 using Microsoft.AspNetCore.Mvc;
 using Negocio.Productos.Entidades;
 using Negocio.Productos.Interfaces;
@@ -19,11 +20,13 @@ namespace API.Controllers.Productos
         [HttpPost]
         public IActionResult Post([FromBody] ArticuloVm articuloVm)
         {
-            var articulo = new Articulo
-            {
-                Nombre = articuloVm.Nombre,
-                Precio = articuloVm.Precio 
-            };
+
+            var articulo = articuloVm.Adapt<Articulo>();
+            //var articulo = new Articulo
+            //{
+            //    Nombre = articuloVm.Nombre,
+            //    Precio = articuloVm.Precio 
+            //};
 
             var articuloValidador = new ArticuloValidator();
             var resultadosValidacion = articuloValidador.Validate(articulo);
