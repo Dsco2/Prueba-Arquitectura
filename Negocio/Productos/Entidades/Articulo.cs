@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FluentValidation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,4 +14,16 @@ namespace Negocio.Productos.Entidades
         public decimal Precio { get; set; }
         public DateTime? FechaBorrado { get; set; }
     }
+
+    public class ArticuloValidator : AbstractValidator<Articulo>
+    {
+        public ArticuloValidator()
+        {
+            RuleFor(x => x.Nombre).Length(1, 45);
+            RuleFor(x => x.Precio).GreaterThan(0);
+        }
+    }
+
+
+
 }

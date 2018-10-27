@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using API.ModelosVista.Productos;
+using Microsoft.AspNetCore.Mvc;
+using Negocio.Productos.Entidades;
 using Negocio.Productos.Interfaces;
 using System.Linq;
 
@@ -15,9 +17,24 @@ namespace API.Controllers.Productos
         }
 
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post([FromBody] ArticuloVm articuloVm)
         {
-            _servicioArticulo.CrearArticulo(value);
+            var articulo = new Articulo
+            {
+                Nombre = articuloVm.Nombre,
+                Precio = articuloVm.Precio 
+            };
+
+            var articuloValidador = new ArticuloValidator();
+            var resultadosValidacion = articuloValidador.Validate(articulo);
+
+            if(!resultadosValidacion.IsValid)
+            {
+                return BadRequest();
+            }
+
+            _servicioArticulo.CrearArticulo(articulo);
+            return Ok();
         }
 
         [HttpGet]

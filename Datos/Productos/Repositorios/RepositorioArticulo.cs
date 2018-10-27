@@ -33,14 +33,11 @@ namespace Persistencia.Productos.Repositorios
             
         }
 
-        public bool CrearArticulo(string nombre)
+        public bool CrearArticulo(Articulo articulo)
         {
             try
             {
-                _contexto.Articulos.Add(new Articulo
-                {
-                    Nombre = nombre
-                });
+                _contexto.Articulos.Add(articulo);  
                 _contexto.SaveChanges();
                 return true;
             }

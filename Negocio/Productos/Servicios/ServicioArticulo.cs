@@ -19,9 +19,9 @@ namespace Negocio.Productos.Servicios
             return _repositorioArticulo.ActualizarPrecio(id, precio);
         }
 
-        public bool CrearArticulo(string nombreArticulo)
+        public bool CrearArticulo(Articulo articulo)
         {
-            return _repositorioArticulo.CrearArticulo(nombreArticulo);
+            return _repositorioArticulo.CrearArticulo(articulo);
         }
 
         public bool EliminarArticulo(int id)

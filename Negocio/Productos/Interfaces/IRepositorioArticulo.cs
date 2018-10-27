@@ -9,7 +9,7 @@ namespace Negocio.Productos.Interfaces
 {
     public interface IRepositorioArticulo
     {
-        bool CrearArticulo(string nombre);
+        bool CrearArticulo(Articulo articulo);
         List<Articulo> ObtenerArticulos();
         Articulo ObtenerArticulosPorId(int id);
         bool ActualizarPrecio(int id, decimal precio);
