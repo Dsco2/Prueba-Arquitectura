@@ -1,10 +1,10 @@
 ﻿using Autofac;
 using Negocio.Productos.Interfaces;
-using Negocio.Productos.Servicios;
 using Persistencia.Mercadeo.Interfaces;
 using Persistencia.Mercadeo.Repositorios;
-using Persistencia.Mercadeo.Servicio;
 using Persistencia.Productos.Repositorios;
+using System.Reflection;
+using Module = Autofac.Module;
 
 namespace IoC
 {
@@ -12,9 +12,13 @@ namespace IoC
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<ServicioArticulo>().As<IServicioArticulo>();
+            //builder.RegisterType<ServicioArticulo>().As<IServicioArticulo>();
+            //builder.RegisterType<ServicioLista>().As<IServicioLista>();
+
+            var negocioAssembly = Assembly.Load("Negocio");
+            builder.RegisterAssemblyTypes(negocioAssembly).AsImplementedInterfaces();
+
             builder.RegisterType<RepositorioArticulo>().As<IRepositorioArticulo>();
-            builder.RegisterType<ServicioLista>().As<IServicioLista>();
             builder.RegisterType<RepositorioLista>().As<IRepositorioLista>();
 
         }
