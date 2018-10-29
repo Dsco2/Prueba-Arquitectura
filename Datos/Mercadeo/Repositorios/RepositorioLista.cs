@@ -20,7 +20,7 @@ namespace Persistencia.Mercadeo.Repositorios
                 _contexto.ArticulosPorLista.Add(new ArticuloPorLista
                 {
                     IdArticulo = idArticulo,
-                    IdLista = 2010
+                    IdListaEscolar = 2010
                 });
                 _contexto.SaveChanges();
                 return true;

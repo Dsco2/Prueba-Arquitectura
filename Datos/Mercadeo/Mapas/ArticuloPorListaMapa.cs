@@ -13,7 +13,7 @@ namespace Persistencia.Productos.Mapas
         public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<ArticuloPorLista> builder)
         {
             builder.ToTable("ArticulosPorLista", "mkt");
-            builder.HasKey(x => new { x.IdArticulo, x.IdLista });
+            builder.HasKey(x => new { x.IdArticulo, x.IdListaEscolar });
             builder.HasOne(x => x.Articulo);
             builder.HasOne(x => x.ListaEscolar);
         }
