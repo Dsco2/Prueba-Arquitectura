@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Persistencia;
@@ -9,9 +10,10 @@ using Persistencia;
 namespace Persistencia.Migrations
 {
     [DbContext(typeof(ContextoPrincipal))]
-    partial class ContextoPrincipalModelSnapshot : ModelSnapshot
+    [Migration("20181029163221_DB_Marcas")]
+    partial class DB_Marcas
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -77,44 +79,6 @@ namespace Persistencia.Migrations
                     b.ToTable("Marcas","prods");
                 });
 
-            modelBuilder.Entity("Negocio.Productos.Entidades.Producto", b =>
-                {
-                    b.Property<int>("IdProducto")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<bool>("AgotarPorInventario");
-
-                    b.Property<string>("Descripcion");
-
-                    b.Property<bool>("Disponible");
-
-                    b.Property<int>("IdMarca");
-
-                    b.Property<bool>("ListaFavor");
-
-                    b.Property<string>("Nombre")
-                        .HasMaxLength(60);
-
-                    b.Property<string>("NombreBuscador")
-                        .HasMaxLength(200);
-
-                    b.Property<double>("Peso");
-
-                    b.Property<int>("SecuenciaIdRemision");
-
-                    b.Property<int>("SecuenciaPagina");
-
-                    b.Property<bool>("TieneImagen");
-
-                    b.Property<string>("UrlImagen");
-
-                    b.HasKey("IdProducto");
-
-                    b.HasIndex("IdMarca");
-
-                    b.ToTable("Productos","prods");
-                });
-
             modelBuilder.Entity("Negocio.Mercadeo.Entidades.ArticuloPorLista", b =>
                 {
                     b.HasOne("Negocio.Productos.Entidades.Articulo", "Articulo")
@@ -125,14 +89,6 @@ namespace Persistencia.Migrations
                     b.HasOne("Negocio.Mercadeo.Entidades.ListaEscolar", "ListaEscolar")
                         .WithMany()
                         .HasForeignKey("ListaEscolarIdListaEscolar");
-                });
-
-            modelBuilder.Entity("Negocio.Productos.Entidades.Producto", b =>
-                {
-                    b.HasOne("Negocio.Productos.Entidades.Marca", "Marca")
-                        .WithMany()
-                        .HasForeignKey("IdMarca")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

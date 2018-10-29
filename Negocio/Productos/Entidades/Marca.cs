@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace API.ModelosVista.Productos
+namespace Negocio.Productos.Entidades
 {
-    public class ArticuloVm
+    public class Marca
     {
+        public int IdMarca { get; set; }
         public string Nombre { get; set; }
-        public decimal Precio { get; set; }
     }
 }

@@ -9,7 +9,9 @@ namespace Persistencia
     public class ContextoPrincipal : DbContext
     {
         public DbSet<Articulo> Articulos { get; set; }
+        public DbSet<Producto> Productos { get; set; }
         public DbSet<ListaEscolar> ListasEscolares { get; set; }
+        public DbSet<Marca> Marcas { get; set; }
         public DbSet<ArticuloPorLista> ArticulosPorLista { get; set; }
         public ContextoPrincipal(DbContextOptions<ContextoPrincipal> options) : base(options) { }
 
@@ -18,6 +20,8 @@ namespace Persistencia
             modelBuilder.ApplyConfiguration(new ArticuloMapa());
             modelBuilder.ApplyConfiguration(new ArticuloPorListaMapa());
             modelBuilder.ApplyConfiguration(new ListasEscolaresMapa());
+            modelBuilder.ApplyConfiguration(new MarcaMapa());
+            modelBuilder.ApplyConfiguration(new ProductoMapa());
             base.OnModelCreating(modelBuilder);
         }
     }

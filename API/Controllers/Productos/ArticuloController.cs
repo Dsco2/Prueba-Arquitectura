@@ -1,4 +1,4 @@
-﻿using API.ModelosVista.Productos;
+﻿using Negocio.ModelosVista.Productos;
 using Mapster;
 using Microsoft.AspNetCore.Mvc;
 using Negocio.Productos.Entidades;
@@ -20,23 +20,18 @@ namespace API.Controllers.Productos
         [HttpPost]
         public IActionResult Post([FromBody] ArticuloVm articuloVm)
         {
-
+            if (!ModelState.IsValid) return BadRequest(ModelState);
             var articulo = articuloVm.Adapt<Articulo>();
-            //var articulo = new Articulo
+
+            //var articuloValidador = new ArticuloValidator();
+            //var resultadosValidacion = articuloValidador.Validate(articulo);
+
+            //if(!resultadosValidacion.IsValid)
             //{
-            //    Nombre = articuloVm.Nombre,
-            //    Precio = articuloVm.Precio 
-            //};
+            //    return BadRequest();
+            //}
 
-            var articuloValidador = new ArticuloValidator();
-            var resultadosValidacion = articuloValidador.Validate(articulo);
-
-            if(!resultadosValidacion.IsValid)
-            {
-                return BadRequest();
-            }
-
-            _servicioArticulo.CrearArticulo(articulo);
+            //_servicioArticulo.CrearArticulo(articulo);
             return Ok();
         }
 
