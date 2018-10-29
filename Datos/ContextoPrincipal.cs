@@ -13,6 +13,9 @@ namespace Persistencia
         public DbSet<ListaEscolar> ListasEscolares { get; set; }
         public DbSet<Marca> Marcas { get; set; }
         public DbSet<ArticuloPorLista> ArticulosPorLista { get; set; }
+        public DbSet<DistintivoPagina> DistintivosPaginas { get; set; }
+        public DbSet<DistintivosProducto> DistintivosProductos { get; set; }
+
         public ContextoPrincipal(DbContextOptions<ContextoPrincipal> options) : base(options) { }
 
         protected override void OnModelCreating (ModelBuilder modelBuilder)
@@ -22,6 +25,9 @@ namespace Persistencia
             modelBuilder.ApplyConfiguration(new ListasEscolaresMapa());
             modelBuilder.ApplyConfiguration(new MarcaMapa());
             modelBuilder.ApplyConfiguration(new ProductoMapa());
+
+            modelBuilder.ApplyConfiguration(new DistintivoPaginaMapa());
+            modelBuilder.ApplyConfiguration(new DistintivoProductoMapa());
             base.OnModelCreating(modelBuilder);
         }
     }

@@ -1,4 +1,6 @@
-﻿namespace Negocio.Productos.Entidades
+﻿using System.Collections.Generic;
+
+namespace Negocio.Productos.Entidades
 {
     public class Producto
     {
@@ -18,6 +20,7 @@
         #region Relaciones
         public int IdMarca { get; set; }
         public virtual Marca Marca { get; set; }
+        public virtual ICollection<DistintivosProducto> DistintivosProductos { get; set; }
         #endregion
     }
 }
