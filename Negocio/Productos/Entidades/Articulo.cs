@@ -1,4 +1,6 @@
 ﻿using FluentValidation;
+using FluentValidation.Results;
+using Negocio.Productos.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,11 +15,21 @@ namespace Negocio.Productos.Entidades
         public string Nombre { get; set; }
         public decimal Precio { get; set; }
         public DateTime? FechaBorrado { get; set; }
+
+        public ValidationResult Validarse()
+        {
+            var articuloValidador = new ArticuloValidador();
+            var resultadosValidacion = articuloValidador.Validate(this);
+            return resultadosValidacion;
+        }
+
+
+
     }
 
-    public class ArticuloValidator : AbstractValidator<Articulo>
+    public class ArticuloValidador : AbstractValidator<Articulo>
     {
-        public ArticuloValidator()
+        public ArticuloValidador()
         {
             RuleFor(x => x.Nombre).Length(1, 45);
             RuleFor(x => x.Precio).GreaterThan(0);

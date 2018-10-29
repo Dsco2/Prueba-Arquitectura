@@ -21,6 +21,8 @@ namespace Negocio.Productos.Servicios
 
         public bool CrearArticulo(Articulo articulo)
         {
+            //var resultadoValidacion = articulo.Validarse();
+            if (!articulo.Validarse().IsValid) return false;
             return _repositorioArticulo.CrearArticulo(articulo);
         }
 

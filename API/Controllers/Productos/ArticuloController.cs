@@ -22,16 +22,7 @@ namespace API.Controllers.Productos
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
             var articulo = articuloVm.Adapt<Articulo>();
-
-            //var articuloValidador = new ArticuloValidator();
-            //var resultadosValidacion = articuloValidador.Validate(articulo);
-
-            //if(!resultadosValidacion.IsValid)
-            //{
-            //    return BadRequest();
-            //}
-
-            //_servicioArticulo.CrearArticulo(articulo);
+            if (!_servicioArticulo.CrearArticulo(articulo)) return Conflict();
             return Ok();
         }
 
@@ -47,6 +38,7 @@ namespace API.Controllers.Productos
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
+            if (id <= 0) return BadRequest("El Id no es válido");
             var Articulos = _servicioArticulo.ObtenerArticuloPorId(id);
             if (Articulos == null) return NoContent();
             return Ok(Articulos);
