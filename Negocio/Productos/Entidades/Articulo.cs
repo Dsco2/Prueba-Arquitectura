@@ -19,8 +19,8 @@ namespace Negocio.Productos.Entidades
         public ValidationResult Validarse()
         {
             var articuloValidador = new ArticuloValidador();
-            var resultadosValidacion = articuloValidador.Validate(this);
-            return resultadosValidacion;
+            return articuloValidador.Validate(this);
+ 
         }
 
 
